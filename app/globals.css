@@ -519,8 +519,8 @@ body.is-locked .header {
 @media (min-width: 768px) {
   .page-layout {
     flex-direction: row;
-    max-width: var(--container-max-width);
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     align-self: center;
     width: 100%;
   }
