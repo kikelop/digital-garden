@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <!-- Generic fallback for all browsers -->
+  <link rel="shortcut icon" href="favicon/favicon.ico" sizes="any">
+  <!-- SVG (sharp on all DPIs, if present) -->
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <!-- PNG fallbacks -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <!-- iOS/Android -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="I'm a designer with 8 years of experience in UX, UI, and graphic design. I care about making things simple and easy to use.">
+  <link rel="canonical" href="https://kikelopez.es/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kike López – Product Designer" />
+  <meta property="og:description" content="Product Designer with 8 years of experience across UX, UI, and graphic design." />
+  <meta property="og:image" content="https://kikelopez.es/images/og-image-kike-lopez.jpg" />
+  <meta property="og:url" content="https://kikelopez.es/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kike López – Product Designer" />
+  <meta name="twitter:description" content="Product Designer with 8 years of experience across UX, UI, and graphic design." />
+  <meta name="twitter:image" content="https://kikelopez.es/images/og-image-kike-lopez.jpg" />
+  <title>Kike López - Product Designer</title>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header Component -->
+  <div id="header-component"></div>
+  <div id="mobile-nav-component"></div>
+
+  <!-- Hero -->
+  <!-- Main hero section with headline, description, tags, and decorative grid background -->
+  <section class="hero">
+    <div class="hero__grid-overlay"></div>
+    <div class="hero__container">
+      <div class="hero__content">
+        <h1 class="hero__title" data-reveal="fade-up" data-reveal-group="hero-title">Kike López.</h1>
+        <h2 class="hero__subtitle" data-reveal="fade-up" data-reveal-group="hero-title" data-reveal-delay="30">Product Designer</h2>
+        <p class="hero__description" data-reveal="fade-up" data-reveal-group="hero" data-reveal-delay="60">
+          I'm a designer with 8 years of experience in UX, UI, and graphic design. I care about making things simple and easy to use.
+        </p>
+       
+        <button class="hero__scroll" type="button" aria-label="Scroll to next section">
+          <span>TAKE<br>A LOOK</span>
+          <img class="hero__scroll-icon" src="icons/Icon-arrow.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <!-- Accordion section with collapsible service descriptions -->
+  <section class="services" id="services">
+    <div class="services__container">
+      <div class="services__header" data-reveal="fade-in">
+        <img src="icons/sections-arrow.svg" alt="" class="services__arrow" aria-hidden="true">
+        <h2 class="services__title">SERVICES</h2>
+      </div>
+
+      <div class="services__accordion" data-reveal-stagger="60">
+        <div class="accordion__item" data-reveal="fade-up" data-reveal-group="services">
+          <button class="accordion__button" data-accordion-trigger>
+            <h3 class="accordion__title">Research</h3>
+            <img class="accordion__icon" src="icons/plus-dropdown.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p>Every project starts with understanding. I conduct research — from competitor benchmarks to user interviews and product audits when needed. Any good project should be guided by data — both at the beginning to define objectives and later on to validate whether the KPIs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item" data-reveal="fade-up" data-reveal-group="services">
+          <button class="accordion__button" data-accordion-trigger>
+            <h3 class="accordion__title">User Experience</h3>
+            <img class="accordion__icon" src="icons/plus-dropdown.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p>I design with clarity and purpose in mind. From early wireframes to full prototypes, each flow is tested and refined until it feels right — reducing potential errors in future development and optimizing the overall workflow chain.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item" data-reveal="fade-up" data-reveal-group="services">
+          <button class="accordion__button" data-accordion-trigger>
+            <h3 class="accordion__title">User Interface</h3>
+            <img class="accordion__icon" src="icons/plus-dropdown.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p>I design creative, visually distinct interfaces while keeping consistency and usability in mind. When needed, I follow company guidelines and design systems to ensure everything fits within a larger structure. I enjoy pushing visuals in fresh directions without losing balance or clarity.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item" data-reveal="fade-up" data-reveal-group="services">
+          <button class="accordion__button" data-accordion-trigger>
+            <h3 class="accordion__title">Vibe Coding</h3>
+            <img class="accordion__icon" src="icons/plus-dropdown.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p>Vibe coding is the best tool right now for generating and testing ideas fast. Because I know HTML and CSS, it's easy for me to code assisted by AI — speeding up the process and keeping the creative flow alive. This hands-on approach helps me explore, test, and refine ideas in a real environment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item" data-reveal="fade-up" data-reveal-group="services">
+          <button class="accordion__button" data-accordion-trigger>
+            <h3 class="accordion__title">Brand & Visual Design</h3>
+            <img class="accordion__icon" src="icons/plus-dropdown.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__inner">
+              <p>Before moving into product design, I worked as a graphic designer, which gave me a solid foundation in visual communication and brand identity. That background helps me design interfaces and aesthetics that go beyond usability — expressing a brand's voice while staying clean, modern, and timeless.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Work -->
+  <!-- Grid of project cards with images, titles, and tags -->
+  <section class="work">
+    <div class="work__container">
+      <div class="work__header" data-reveal="fade-in">
+        <img src="icons/sections-arrow.svg" alt="" class="work__arrow" aria-hidden="true">
+        <h2 class="work__title">RECENT WORK</h2>
+      </div>
+
+      <div class="work__grid" data-reveal-stagger="60">
+        <a href="pomodoro.html" class="work__card" data-reveal="fade-up" data-reveal-group="work">
+          <div class="work__image">
+            <img src="images/project-covers/pomodoro.png" alt="Pomodoro Timer" loading="lazy" decoding="async" />
+          </div>
+          <div class="work__info">
+            <h3 class="work__card-title">Pomodoro Timer</h3>
+            <div class="work__tags"><span>Front End</span><span>Vibe Coding</span><span>UI Design</span></div>
+          </div>
+        </a>
+        <a href="project-paywall.html" class="work__card" data-reveal="fade-up" data-reveal-group="work">
+          <div class="work__image">
+            <img src="images/project-covers/paywall.png" alt="Paywall Experiments" loading="lazy" decoding="async" />
+          </div>
+          <div class="work__info">
+            <h3 class="work__card-title">Paywall Experiments</h3>
+            <div class="work__tags"><span>Product Design</span><span>A/B Testing</span><span>CRO</span></div>
+          </div>
+        </a>
+        <a href="project-offboarding.html" class="work__card" data-reveal="fade-up" data-reveal-group="work">
+          <div class="work__image">
+            <img src="images/project-covers/offboarding.png" alt="Subscription Off‑boarding" loading="lazy" decoding="async" />
+          </div>
+          <div class="work__info">
+            <h3 class="work__card-title">Subscription Off‑boarding</h3>
+            <div class="work__tags"><span>UX/UI</span><span>Retention</span><span>Flow Optimization</span></div>
+          </div>
+        </a>
+        <a href="project-paywall-app.html" class="work__card" data-reveal="fade-up" data-reveal-group="work">
+          <div class="work__image">
+            <img src="images/project-covers/paywall-app.png" alt="Black Friday" loading="lazy" decoding="async" />
+          </div>
+          <div class="work__info">
+            <h3 class="work__card-title">Paywall App</h3>
+            <div class="work__tags"><span>Mobile</span><span>Product Design</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="work__cta work__cta--center">
+        <a href="work.html" class="btn btn--outline">
+          <span>All Projects</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Favourite Tools -->
+  <!-- Grid of tool cards with icons and descriptions -->
+  <section class="tools">
+    <div class="tools__container">
+      <div class="tools__header" data-reveal="fade-in">
+        <img src="icons/sections-arrow.svg" alt="" class="tools__arrow" aria-hidden="true">
+        <h2 class="tools__title">FAVOURITE TOOLS</h2>
+      </div>
+
+      <div class="tools__grid" data-reveal-stagger="60">
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/Tools-Figma.svg" alt="Figma logo" class="tools__icon-img">
+          <div class="tools__content">
+            <h3 class="tools__card-title">Figma</h3>
+            <p class="tools__description">Collaborative design, prototyping, and component systems</p>
+          </div>
+        </div>
+
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/vscode-logo.svg" alt="Bolt.new logo" class="tools__icon-img" style="border: 0.5px solid #CFCFCF;">
+          <div class="tools__content">
+            <h3 class="tools__card-title">VSCode</h3>
+            <p class="tools__description">Light front-end coding for quick design tweaks and prototyping.</p>
+          </div>
+        </div>
+
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/claude-code-logo.svg" alt="Midjourney logo" class="tools__icon-img">
+          <div class="tools__content">
+            <h3 class="tools__card-title">Claude Code</h3>
+            <p class="tools__description">AI-assisted coding for fast prototyping and experimentation.</p>
+          </div>
+        </div>
+
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/Tools-PhotoShop.svg" alt="Photoshop logo" class="tools__icon-img">
+          <div class="tools__content">
+            <h3 class="tools__card-title">Photoshop</h3>
+            <p class="tools__description">I use it to fine-tune images, prepare assets, and add extra polish.</p>
+          </div>
+        </div>
+
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/Tools-ChatGPT.svg" alt="Chat GPT logo" class="tools__icon-img">
+          <div class="tools__content">
+            <h3 class="tools__card-title">ChatGPT</h3>
+            <p class="tools__description">Generating new ideas, content, and creative assistance, analysing data ...</p>
+          </div>
+        </div>
+
+        <div class="tools__card" data-reveal="fade-up" data-reveal-group="tools">
+          <img src="images/Tools-Cursor.svg" alt="Cursor logo" class="tools__icon-img">
+          <div class="tools__content">
+            <h3 class="tools__card-title">Cursor</h3>
+            <p class="tools__description">An alternative AI powered editor for experiments and front-end exploration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Favourite Books -->
+  <!-- Grid of book cards with covers, titles, and descriptions -->
+  <section class="books">
+    <div class="books__container">
+      <div class="books__header" data-reveal="fade-in">
+        <img src="icons/sections-arrow.svg" alt="" class="books__arrow" aria-hidden="true">
+        <h2 class="books__title">FAVOURITE BOOKS</h2>
+      </div>
+
+      <div class="books__grid" data-reveal-stagger="60">
+        <div class="books__card" data-reveal="fade-up" data-reveal-group="books">
+          <img src="images/books-1.png" alt="Don't Make me Think" class="books__icon-img">
+          <div class="books__content">
+            <h3 class="books__card-title">Don’t Make Me Think</h3>
+            <p class="books__description">A classic guide to usability and intuitive design.</p>
+          </div>
+        </div>
+
+        <div class="books__card" data-reveal="fade-up" data-reveal-group="books">
+          <img src="images/books-2.png" alt="Lean UX" class="books__icon-img">
+          <div class="books__content">
+            <h3 class="books__card-title">Lean UX</h3>
+            <p class="books__description">A framework for collaboration, iteration, and measurable impact across teams.</p>
+          </div>
+        </div>
+
+        <div class="books__card" data-reveal="fade-up" data-reveal-group="books">
+          <img src="images/books-3.png" alt="The Art Of Not Giving A F*" class="books__icon-img">
+          <div class="books__content">
+            <h3 class="books__card-title">The Art Of Not Giving A F*</h3>
+            <p class="books__description">A reminder to focus on what truly matters in creative work and life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component -->
+  <div id="footer-component"></div>
+
+  <script src="components.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
