@@ -90,7 +90,8 @@ body.is-locked .header {
 .header__container {
   position: relative;
   width: 100%;
-  max-width: none;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
   padding: 0 16px;
   height: var(--header-height);
   display: grid;
@@ -305,6 +306,7 @@ body.is-locked .header {
   flex-direction: column;
   min-height: calc(100vh - var(--header-height));
   font-family: var(--font-inter), system-ui, sans-serif;
+  width: 100%;
 }
 
 .page-sidebar {
@@ -341,8 +343,8 @@ body.is-locked .header {
   font-size: 17px;
   font-weight: 600;
   color: var(--color-text-primary);
-  line-height: 1.5;
-  margin-bottom: 4px;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
 .sidebar-description__text {
@@ -517,6 +519,10 @@ body.is-locked .header {
 @media (min-width: 768px) {
   .page-layout {
     flex-direction: row;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    align-self: center;
+    width: 100%;
   }
 
   .page-sidebar {
@@ -528,6 +534,7 @@ body.is-locked .header {
   }
 
   .page-main {
+    flex: 1;
     padding: 40px 48px;
   }
 
