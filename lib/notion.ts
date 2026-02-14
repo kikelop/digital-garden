@@ -135,7 +135,76 @@ export function renderBlock(block: any): string {
       return `<div class="callout">${icon} ${renderRichText(block.callout.rich_text)}</div>`;
     }
 
+    case "video": {
+      const url = block.video.type === "external"
+        ? block.video.external.url
+        : block.video.file.url;
+      const caption = block.video.caption?.[0]?.plain_text || "";
+      return `<figure><iframe width="100%" height="400" src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>`;
+    }
+
+    case "embed": {
+      let url = block.embed.url;
+
+      // If it's a Notion embed URL, try to extract the actual content
+      if (url.includes("notion.so")) {
+        // Notion embeds are just links, render as iframe to Notion page
+        return `<iframe width="100%" height="500" src="${url}" frameborder="0" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      }
+
+      // Convert YouTube URLs to embeddable format
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        let videoId: string | null = null;
+
+        // Try to extract video ID from various YouTube URL formats
+        const patterns = [
+          /youtube\.com\/watch\?v=([^&]+)/,  // youtube.com/watch?v=VIDEO_ID
+          /youtu\.be\/([^?&]+)/,             // youtu.be/VIDEO_ID
+          /youtube\.com\/embed\/([^?&]+)/    // youtube.com/embed/VIDEO_ID
+        ];
+
+        for (const pattern of patterns) {
+          const match = url.match(pattern);
+          if (match) {
+            videoId = match[1];
+            break;
+          }
+        }
+
+        if (videoId) {
+          url = `https://www.youtube.com/embed/${videoId}`;
+        }
+      }
+
+      return `<iframe width="100%" height="400" src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    }
+
+    case "bookmark": {
+      // Handle bookmarks (which can include YouTube links)
+      const url = block.bookmark.url;
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        const patterns = [
+          /youtube\.com\/watch\?v=([^&]+)/,
+          /youtu\.be\/([^?&]+)/,
+          /youtube\.com\/embed\/([^?&]+)/
+        ];
+
+        for (const pattern of patterns) {
+          const match = url.match(pattern);
+          if (match) {
+            const videoId = match[1];
+            return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+          }
+        }
+      }
+      return `<a href="${url}">${block.bookmark.title || url}</a>`;
+    }
+
     default:
+      // Debug: log unsupported block type
+      if (typeof window === 'undefined') {
+        console.log(`Unsupported block type: ${type}`, JSON.stringify(block, null, 2));
+      }
       return `<!-- Bloque no soportado: ${type} -->`;
   }
 }

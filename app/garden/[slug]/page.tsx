@@ -26,29 +26,20 @@ export default async function PostPage({ params }: Props) {
   const contentHtml = blocks.map(renderBlock).join("");
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: 40, fontFamily: "system-ui" }}>
+    <main className="post-main">
       <div className="post-back-bar">
         <a href="/" className="post-back-link">&larr; Back</a>
       </div>
 
-      <article style={{ marginTop: 24 }}>
-        <h1 style={{ marginBottom: 8 }}>{title}</h1>
+      <article className="post-article">
+        <h1 className="article-title">{title}</h1>
 
-        <div style={{ color: "#121212", fontSize: 14, marginBottom: 24 }}>
+        <div className="post-meta">
           {date && <span>{date}</span>}
           {tags.length > 0 && (
-            <span style={{ marginLeft: 16 }}>
+            <span className="post-tags">
               {tags.map((tag: any) => (
-                <span
-                  key={tag.id}
-                  style={{
-                    background: "#eee",
-                    padding: "2px 8px",
-                    borderRadius: 4,
-                    marginRight: 8,
-                    fontSize: 12,
-                  }}
-                >
+                <span key={tag.id} className="post-tag">
                   {tag.name}
                 </span>
               ))}
@@ -59,26 +50,8 @@ export default async function PostPage({ params }: Props) {
         <div
           className="content"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
-          style={{ lineHeight: 1.7 }}
         />
       </article>
-
-      <style>{`
-        .content h1, .content h2, .content h3 { margin-top: 1.5em; }
-        .content p { margin: 1em 0; color: #121212; }
-        .content blockquote { border-left: 4px solid #FF4921; padding-left: 1em; color: #121212; margin: 1em 0; }
-        .content pre { background: #f5f5f5; padding: 1em; overflow-x: auto; border-radius: 4px; }
-        .content code { background: #f0f0f0; padding: 2px 4px; border-radius: 2px; }
-        .content pre code { background: none; padding: 0; }
-        .content img { max-width: 100%; height: auto; border-radius: 8px; }
-        .content figure { margin: 1.5em 0; }
-        .content figcaption { text-align: center; color: #666; font-size: 14px; margin-top: 8px; }
-        .content .callout { background: #f9f9f9; padding: 1em; border-radius: 4px; margin: 1em 0; }
-        .content a { color: #0066cc; }
-        .content ul, .content ol { padding-left: 1.5em; }
-        .content li { margin: 0.5em 0; margin-left: 24px; color: #121212; }
-        .content hr { border: none; border-top: 1px solid #eee; margin: 2em 0; }
-      `}</style>
     </main>
   );
 }
