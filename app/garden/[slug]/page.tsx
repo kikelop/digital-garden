@@ -34,7 +34,7 @@ export default async function PostPage({ params }: Props) {
       <article style={{ marginTop: 24 }}>
         <h1 style={{ marginBottom: 8 }}>{title}</h1>
 
-        <div style={{ color: "#666", fontSize: 14, marginBottom: 24 }}>
+        <div style={{ color: "#121212", fontSize: 14, marginBottom: 24 }}>
           {date && <span>{date}</span>}
           {tags.length > 0 && (
             <span style={{ marginLeft: 16 }}>
@@ -65,8 +65,8 @@ export default async function PostPage({ params }: Props) {
 
       <style>{`
         .content h1, .content h2, .content h3 { margin-top: 1.5em; }
-        .content p { margin: 1em 0; }
-        .content blockquote { border-left: 3px solid #ccc; padding-left: 1em; color: #555; margin: 1em 0; }
+        .content p { margin: 1em 0; color: #121212; }
+        .content blockquote { border-left: 4px solid #FF4921; padding-left: 1em; color: #121212; margin: 1em 0; }
         .content pre { background: #f5f5f5; padding: 1em; overflow-x: auto; border-radius: 4px; }
         .content code { background: #f0f0f0; padding: 2px 4px; border-radius: 2px; }
         .content pre code { background: none; padding: 0; }
@@ -76,7 +76,7 @@ export default async function PostPage({ params }: Props) {
         .content .callout { background: #f9f9f9; padding: 1em; border-radius: 4px; margin: 1em 0; }
         .content a { color: #0066cc; }
         .content ul, .content ol { padding-left: 1.5em; }
-        .content li { margin: 0.5em 0; }
+        .content li { margin: 0.5em 0; margin-left: 24px; color: #121212; }
         .content hr { border: none; border-top: 1px solid #eee; margin: 2em 0; }
       `}</style>
     </main>
