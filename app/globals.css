@@ -708,27 +708,55 @@ body.is-locked .header {
   line-height: 1.7;
 }
 
-/* Content styling - Article styles */
+/* Content styling - Article styles - Notion-like spacing */
 .content h1 {
-  margin-top: 1.5em;
-  margin-bottom: 32px;
-  
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-size: 1.875em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.content h2, .content h3 {
-  margin-top: 1.5em;
+.content h2 {
+  margin-top: 1.8em;
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.content h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .content p {
-  margin: 1em 0;
+  margin: 0.5em 0;
   color: #121212;
+  line-height: 1.65;
+}
+
+/* Empty paragraphs (line breaks in Notion) - make them visible */
+.content p:empty {
+  min-height: 0.1em;
+  margin: 0.05em 0;
+}
+
+.content p:empty::before {
+  content: '\200B'; /* Zero-width space to give height */
 }
 
 .content blockquote {
   border-left: 4px solid #FF4921;
   padding-left: 1em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   color: #121212;
-  margin: 1em 0 2em;
+  margin: 0.5em 0;
+  line-height: 1.65;
 }
 
 .content blockquote strong {
@@ -760,7 +788,7 @@ body.is-locked .header {
 }
 
 .content figure {
-  margin: 1.5em 0;
+  margin: 0.5em 0;
 }
 
 .content figcaption {
@@ -782,14 +810,25 @@ body.is-locked .header {
 }
 
 .content ul, .content ol {
-  padding-left: 1.5em;
-  margin: 1em 0 2em;
+  padding-left: 1.2em;
+  margin: 0.5em 0;
+  list-style-position: outside;
 }
 
 .content li {
-  margin: 0.5em 0;
-  margin-left: 24px;
+  margin: 0.25em 0;
+  padding-left: 0.3em;
   color: #121212;
+  line-height: 1.65;
+}
+
+/* Nested lists */
+.content ul ul,
+.content ol ol,
+.content ul ol,
+.content ol ul {
+  margin-top: 0.25em;
+  margin-bottom: 0;
 }
 
 .content hr {

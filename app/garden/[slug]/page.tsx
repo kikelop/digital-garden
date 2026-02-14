@@ -1,6 +1,40 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPageContent, renderBlock } from "@/lib/notion";
 
+function wrapListItems(html: string, blocks: any[]): string {
+  // Build an array of HTML segments paired with their block types
+  const segments: { html: string; type: string }[] = blocks.map((block) => ({
+    html: renderBlock(block),
+    type: block.type,
+  }));
+
+  let result = "";
+  let i = 0;
+
+  while (i < segments.length) {
+    if (segments[i].type === "bulleted_list_item") {
+      result += "<ul>";
+      while (i < segments.length && segments[i].type === "bulleted_list_item") {
+        result += segments[i].html;
+        i++;
+      }
+      result += "</ul>";
+    } else if (segments[i].type === "numbered_list_item") {
+      result += "<ol>";
+      while (i < segments.length && segments[i].type === "numbered_list_item") {
+        result += segments[i].html;
+        i++;
+      }
+      result += "</ol>";
+    } else {
+      result += segments[i].html;
+      i++;
+    }
+  }
+
+  return result;
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -23,7 +57,10 @@ export default async function PostPage({ params }: Props) {
 
   // Obtener el contenido de la página
   const blocks = await getPageContent(post.id);
-  const contentHtml = blocks.map(renderBlock).join("");
+
+  // Wrap consecutive list items in <ul> or <ol> tags
+  const rawHtml = blocks.map(renderBlock).join("");
+  const contentHtml = wrapListItems(rawHtml, blocks);
 
   return (
     <main className="post-main">
