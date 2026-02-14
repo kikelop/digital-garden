@@ -136,11 +136,36 @@ export function renderBlock(block: any): string {
     }
 
     case "video": {
-      const url = block.video.type === "external"
+      let url = block.video.type === "external"
         ? block.video.external.url
         : block.video.file.url;
       const caption = block.video.caption?.[0]?.plain_text || "";
-      return `<figure><iframe width="100%" height="400" src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>`;
+
+      // Convert YouTube URLs to embeddable format
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        let videoId: string | null = null;
+
+        // Try to extract video ID from various YouTube URL formats
+        const patterns = [
+          /youtube\.com\/watch\?v=([^&]+)/,  // youtube.com/watch?v=VIDEO_ID
+          /youtu\.be\/([^?&]+)/,             // youtu.be/VIDEO_ID
+          /youtube\.com\/embed\/([^?&]+)/    // youtube.com/embed/VIDEO_ID
+        ];
+
+        for (const pattern of patterns) {
+          const match = url.match(pattern);
+          if (match) {
+            videoId = match[1];
+            break;
+          }
+        }
+
+        if (videoId) {
+          url = `https://www.youtube.com/embed/${videoId}`;
+        }
+      }
+
+      return `<figure><iframe src="${url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>`;
     }
 
     case "embed": {
@@ -149,7 +174,7 @@ export function renderBlock(block: any): string {
       // If it's a Notion embed URL, try to extract the actual content
       if (url.includes("notion.so")) {
         // Notion embeds are just links, render as iframe to Notion page
-        return `<iframe width="100%" height="500" src="${url}" frameborder="0" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+        return `<figure><iframe src="${url}" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></figure>`;
       }
 
       // Convert YouTube URLs to embeddable format
@@ -176,12 +201,14 @@ export function renderBlock(block: any): string {
         }
       }
 
-      return `<iframe width="100%" height="400" src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      return `<figure><iframe src="${url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></figure>`;
     }
 
     case "bookmark": {
       // Handle bookmarks (which can include YouTube links)
       const url = block.bookmark.url;
+      const title = block.bookmark.title || url;
+
       if (url.includes("youtube.com") || url.includes("youtu.be")) {
         const patterns = [
           /youtube\.com\/watch\?v=([^&]+)/,
@@ -193,11 +220,12 @@ export function renderBlock(block: any): string {
           const match = url.match(pattern);
           if (match) {
             const videoId = match[1];
-            return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            return `<figure><iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></figure>`;
           }
         }
       }
-      return `<a href="${url}">${block.bookmark.title || url}</a>`;
+      return `<a href="${url}">${title}</a>`;
     }
 
     default:

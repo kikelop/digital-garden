@@ -798,6 +798,20 @@ body.is-locked .header {
   margin: 2em 0;
 }
 
+/* iFrame and video styling */
+.content iframe {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+}
+
+.content figure iframe {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
 /* Post detail: enforce #121212 text color without impacting listing */
 .post-back-bar + article {
   color: #121212;
