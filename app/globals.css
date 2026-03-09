@@ -176,7 +176,12 @@ body.is-locked .header {
   letter-spacing: 1px;
 }
 
-.header__nav-link:hover,
+@media (hover: hover) {
+  .header__nav-link:hover {
+    color: var(--color-accent);
+  }
+}
+
 .header__nav-link:focus {
   color: var(--color-accent);
 }
@@ -436,8 +441,10 @@ body.is-locked .header {
   transition: color var(--transition-fast);
 }
 
-.post-back-link:hover {
-  color: var(--color-accent);
+@media (hover: hover) {
+  .post-back-link:hover {
+    color: var(--color-accent);
+  }
 }
 
 /* Filter toggle button - mobile only */
@@ -495,8 +502,10 @@ body.is-locked .header {
   letter-spacing: 0.05em;
 }
 
-.filter-clear:hover {
-  color: var(--color-accent);
+@media (hover: hover) {
+  .filter-clear:hover {
+    color: var(--color-accent);
+  }
 }
 
 /* Table header */
@@ -533,9 +542,11 @@ body.is-locked .header {
   line-height: 1.4;
 }
 
-.post-title:hover,
-.post-item:hover .post-title {
-  color: var(--color-accent);
+@media (hover: hover) {
+  .post-title:hover,
+  .post-item:hover .post-title {
+    color: var(--color-accent);
+  }
 }
 
 /* Pin icon */
@@ -565,9 +576,11 @@ body.is-locked .header {
   color: var(--color-accent);
 }
 
-.post-item--pinned .post-title:hover,
-.post-item--pinned:hover .post-title {
-  color: #D93A15;
+@media (hover: hover) {
+  .post-item--pinned .post-title:hover,
+  .post-item--pinned:hover .post-title {
+    color: #D93A15;
+  }
 }
 
 .post-item--pinned .post-date {
