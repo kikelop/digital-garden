@@ -1,5 +1,6 @@
 import { getPublishedPosts } from "@/lib/notion";
 import FilterPanel from "@/components/FilterPanel";
+import PostList from "@/components/PostList";
 
 export const revalidate = 60;
 
@@ -76,37 +77,23 @@ export default async function Home({ searchParams }: Props) {
         </div>
 
         {/* Posts list */}
-        <div>
-          {posts.map((post: any) => {
+        <PostList
+          posts={posts.map((post: any) => {
             const title = post.properties.Title?.title?.[0]?.plain_text ?? "Sin título";
             const slug = post.properties.Slug?.rich_text?.[0]?.plain_text || post.id;
-            const date = post.properties.Date?.date?.start ?? "";
+            const date = formatDate(post.properties.Date?.date?.start ?? "");
             const externalUrl = post.properties.url?.url;
             const href = externalUrl || `/garden/${slug}`;
             const isExternal = !!externalUrl;
             const isPinned = post.properties.Select?.select?.name === "Pin";
+            const files = post.properties["Files & media"]?.files ?? [];
+            const imageUrl = files.length > 0
+              ? (files[0].type === "external" ? files[0].external.url : files[0].file?.url ?? null)
+              : null;
 
-            return (
-              <div key={post.id} className={`post-item ${isPinned ? "post-item--pinned" : ""}`}>
-                <span className="post-date">{formatDate(date)}</span>
-                <a
-                  href={href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="post-title"
-                >
-                  {title}
-                  {isExternal && " ↗"}
-                </a>
-                {isPinned && (
-                  <svg className="post-pin-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16 12V4H17V2H7V4H8V12L6 14V16H11.2V22H12.8V16H18V14L16 12Z" fill="currentColor"/>
-                  </svg>
-                )}
-              </div>
-            );
+            return { id: post.id, title, slug, date, href, isExternal, isPinned, imageUrl };
           })}
-        </div>
+        />
 
         {posts.length === 0 && (
           <p style={{ color: "#666", padding: "40px 0" }}>

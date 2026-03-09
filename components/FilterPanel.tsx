@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 type FilterPanelProps = {
@@ -17,6 +17,25 @@ export default function FilterPanel({
   sort,
 }: FilterPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Hide sidebar on scroll down, show on scroll up (mobile only)
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      if (window.innerWidth >= 768) return;
+      const sidebar = document.querySelector(".page-sidebar") as HTMLElement | null;
+      if (!sidebar) return;
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 60) {
+        sidebar.classList.add("page-sidebar--hidden");
+      } else {
+        sidebar.classList.remove("page-sidebar--hidden");
+      }
+      lastScrollY = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Build URL with current params
   const buildUrl = (params: { tag?: string; sort?: string }) => {
