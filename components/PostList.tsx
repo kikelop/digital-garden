@@ -17,6 +17,7 @@ const canHover = typeof window !== "undefined" && window.matchMedia("(hover: hov
 
 export default function PostList({ posts }: { posts: Post[] }) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -54,8 +55,8 @@ export default function PostList({ posts }: { posts: Post[] }) {
             key={post.id}
             className={`post-item ${post.isPinned ? "post-item--pinned" : ""}`}
             onClick={() => post.isExternal ? window.open(post.href, "_blank", "noopener,noreferrer") : window.location.href = post.href}
-            onMouseEnter={() => canHover && post.imageUrl && setPreviewUrl(post.imageUrl)}
-            onMouseLeave={() => canHover && setPreviewUrl(null)}
+            onMouseEnter={() => { if (canHover && post.imageUrl) { setImgLoaded(false); setPreviewUrl(post.imageUrl); } }}
+            onMouseLeave={() => { if (canHover) { setPreviewUrl(null); setImgLoaded(false); } }}
             onMouseMove={canHover && post.imageUrl ? handleMouseMove : undefined}
           >
             <span className="post-date">{post.date}</span>
@@ -80,10 +81,10 @@ export default function PostList({ posts }: { posts: Post[] }) {
       {/* Floating image preview — desktop only, follows cursor */}
       <div
         ref={previewRef}
-        className={`post-preview-float ${previewUrl ? "post-preview-float--visible" : ""}`}
+        className={`post-preview-float ${previewUrl ? "post-preview-float--visible" : ""} ${imgLoaded ? "post-preview-float--loaded" : ""}`}
         style={{ left: pos.x, top: pos.y }}
       >
-        {previewUrl && <img src={previewUrl} alt="Post preview" />}
+        {previewUrl && <img src={previewUrl} alt="Post preview" onLoad={() => setImgLoaded(true)} />}
       </div>
     </>
   );

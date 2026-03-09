@@ -663,11 +663,17 @@ body.is-locked .header {
   display: none;
 }
 
+@keyframes preview-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 @media (min-width: 768px) {
   .post-preview-float {
     display: block;
     position: fixed;
     width: 300px;
+    min-height: 180px;
     border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
@@ -675,16 +681,27 @@ body.is-locked .header {
     pointer-events: none;
     transition: opacity 0.15s ease;
     z-index: 100;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
   }
 
   .post-preview-float--visible {
     opacity: 1;
+    animation: preview-shimmer 1.2s ease infinite;
+  }
+
+  .post-preview-float--loaded {
+    animation: none;
+    background: none;
+    min-height: unset;
   }
 
   .post-preview-float img {
     display: block;
     width: 100%;
     height: auto;
+    position: relative;
+    z-index: 1;
   }
 }
 
