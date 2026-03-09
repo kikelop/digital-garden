@@ -561,10 +561,8 @@ body.is-locked .header {
 /* Pinned post */
 .post-item--pinned {
   background: rgba(255, 247, 245, 0.5);
-  outline: 0.5px solid #FFE0D6;
-  outline-offset: -0.5px;
+  border: 1px solid rgba(255, 73, 33, 0.25);
   border-radius: 6px;
-  border-bottom: none;
   margin-top: 20px;
   margin-bottom: 8px;
   margin-left: -8px;
